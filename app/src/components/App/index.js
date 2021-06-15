@@ -1,23 +1,27 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Navigation from "../Navigation";
-import Register from "./pages/Register.jsx"
-import Login from "./pages/Login"
-//For now, the login page will have the route of /login. Eventually,
-//I want the route to be / when the user is not logged in,
-//And then switch to the home page with the route of /
+import LandingPage from "../Landing";
+import RegisterPage from "../Register";
+import LoginPage from "../Login";
+import HomePage from "../Home";
+import AccountPage from "../Account";
 
-const App = () => {
-  <Router>
-    <Navigation />
-  </Router>
+import * as ROUTES from "../../constants/routes"
+
+export default function App() {
+  return (
+    <Router>
+      <div>
+        <Navigation />
+
+        <Route exact path={ROUTES.LANDING} component={LandingPage} />
+        <Route path={ROUTES.REGISTER} component={RegisterPage} />
+        <Route path={ROUTES.LOGIN} component={LoginPage} />
+        <Route path={ROUTES.HOME} component={HomePage} />
+        <Route path={ROUTES.ACCOUNT} component={AccountPage} />
+      </div>
+    </Router>
+  );
 }
-
-
-export default App;
